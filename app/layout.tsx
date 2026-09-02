@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { JetBrains_Mono, Manrope, Newsreader } from "next/font/google";
 import type { ReactNode } from "react";
 
@@ -146,6 +147,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           // Static, generated from local data — no user input is interpolated.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildPersonSchema()) }}
         />
+        <Analytics />
       </body>
     </html>
   );
