@@ -1,8 +1,7 @@
 /**
  * Conferences, events and workshops — learning that happened outside coursework.
  *
- * Dates, certificates and session details were not supplied and are therefore
- * `null`. Fill them in when you have them.
+ * Dates and certificates were not supplied and remain `null`.
  *
  * Note on the "Faith & Future" conference: you mentioned it may have been held
  * in the run-up to the AI Impact Summit 2026. That association is not confirmed
@@ -32,7 +31,7 @@ export const learning: LearningEntry[] = [
     host: "Dev Sanskriti Vishwavidyalaya",
     location: "Haridwar",
     date: null,
-    context: null,
+    context: "Attended the international conference.",
   },
   {
     id: "be10x-ai-workshop",
@@ -41,7 +40,7 @@ export const learning: LearningEntry[] = [
     host: "Be10x",
     location: null,
     date: null,
-    context: null,
+    context: "Attended the AI workshop.",
   },
 ];
 

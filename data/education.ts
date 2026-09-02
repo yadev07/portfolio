@@ -24,6 +24,8 @@ export const education: EducationEntry[] = [
     location: "Shantikunj, Haridwar",
     expectedGraduation: 2027,
     status: "In progress",
-    highlights: [],
+    highlights: [
+      "Coursework and project work spanning full-stack web development, backend APIs, databases, data analysis and NLP.",
+    ],
   },
 ];

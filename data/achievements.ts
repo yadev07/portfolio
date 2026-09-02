@@ -1,8 +1,8 @@
 /**
  * Achievements.
  *
- * One confirmed entry. Organiser, date, project name and prize were not
- * supplied, so they stay `null` and render as "to be added" chips.
+ * Confirmed competition, volunteering and learning activities are listed here
+ * without adding dates or organisers that were not supplied.
  *
  * `achievementSlots` are the categories you asked to leave room for. They are
  * shown as an intentionally quiet, collapsed list of empty states — visible to
@@ -29,9 +29,18 @@ export const achievements: Achievement[] = [
     title: "Logicthon",
     result: "3rd position",
     kind: "Competition",
-    organiser: null,
+    organiser: "Computer Science Department, DSVV",
     date: null,
-    description: null,
+    description: "Secured 3rd position in the coding competition.",
+  },
+  {
+    id: "university-volunteering",
+    title: "University Volunteering",
+    result: null,
+    kind: "Activity",
+    organiser: "Computer Science Department, DSVV",
+    date: null,
+    description: "Managed data and supported coordination of university-level events.",
   },
 ];
 

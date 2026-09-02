@@ -13,12 +13,14 @@ export interface SocialLinks {
   github: string;
   linkedin: string;
   email: string;
+  phone: string;
 }
 
 export const links: SocialLinks = {
   github: "https://github.com/yadev07",
   linkedin: "https://www.linkedin.com/in/yadev07",
   email: "yadevsingh.nishad@gmail.com",
+  phone: "+91 7067780427",
 };
 
 /**
@@ -53,7 +55,7 @@ export const profile: Profile = {
   name: "Yadev Singh Nishad",
   shortName: "Yadev",
   monogram: "Y",
-  role: "BCA Computer Science Student",
+  role: "Full-Stack MERN Developer",
   identity: [
     "BCA Computer Science Student",
     "Full-Stack Developer",

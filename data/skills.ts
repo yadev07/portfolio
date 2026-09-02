@@ -26,14 +26,14 @@ export const skillCategories: SkillCategory[] = [
     label: "Frontend",
     note: "Interfaces, routing and client-side state.",
     tone: "saffron",
-    items: ["HTML", "CSS", "Tailwind CSS", "JavaScript", "React", "Next.js", "TypeScript"],
+    items: ["HTML", "HTML5", "CSS", "CSS3", "Tailwind CSS", "JavaScript", "React", "Next.js", "TypeScript", "Responsive Web Design"],
   },
   {
     id: "backend",
     label: "Backend",
     note: "APIs, servers and application logic.",
     tone: "indigo",
-    items: ["Node.js", "Express.js", "Flask"],
+    items: ["Node.js", "Express.js", "Flask", "RESTful APIs"],
   },
   {
     id: "databases",
@@ -47,7 +47,7 @@ export const skillCategories: SkillCategory[] = [
     label: "Programming languages",
     note: "The languages the work above is written in.",
     tone: "neutral",
-    items: ["JavaScript", "TypeScript", "Python"],
+    items: ["JavaScript", "TypeScript", "Python", "SQL"],
   },
   {
     id: "ai",

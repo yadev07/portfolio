@@ -1,0 +1,506 @@
+Yadev Singh Nishad Portfolio - Complete Project Documentation
+===============================================================
+
+1. PROJECT PURPOSE
+------------------
+This project is a personal developer portfolio for Yadev Singh Nishad, a BCA
+Computer Science student at Dev Sanskriti Vishwavidyalaya, Shantikunj,
+Haridwar.
+
+The website presents:
+- Personal profile and introduction
+- Technical skills
+- Projects and project case studies
+- Internship experience
+- Education
+- Achievements
+- Conferences and workshops
+- Contact details and contact form
+- Optional interactive portfolio terminal
+
+The project is designed so that portfolio content is stored in the data/ folder.
+In normal use, content can be updated in data files without editing components.
+
+2. TECHNOLOGY STACK
+-------------------
+Framework:
+- Next.js with App Router
+- React
+- TypeScript with strict mode
+
+Styling and UI:
+- Tailwind CSS
+- Custom styles in app/globals.css
+- Newsreader for display headings
+- Manrope for body and interface text
+- JetBrains Mono for code and terminal sections
+- Lucide React for icons
+- Framer Motion for selected animations
+
+Runtime and deployment:
+- Node.js 18.18 or newer
+- Vercel or Netlify compatible
+- Server-side contact API using Resend or a webhook
+
+3. PROJECT STRUCTURE
+--------------------
+Root files:
+- package.json             Dependencies and npm scripts
+- package-lock.json        npm dependency lockfile
+- pnpm-lock.yaml           pnpm lockfile, if pnpm is used
+- pnpm-workspace.yaml      pnpm workspace configuration
+- next.config.mjs          Next.js configuration
+- tsconfig.json            TypeScript configuration
+- tailwind.config.ts       Tailwind design tokens and settings
+- postcss.config.mjs       PostCSS configuration
+- .eslintrc.json           ESLint configuration
+- .gitignore               Ignored dependencies, build output and secrets
+- .env.example             Environment variable template
+- README.md                Quick setup and content instructions
+- HANDOFF.md               Original build report and handoff notes
+
+Application files:
+- app/layout.tsx            Root layout, fonts, metadata, JSON-LD and global UI
+- app/page.tsx              Home page section composition
+- app/globals.css           Global CSS, tokens, backgrounds and accessibility CSS
+- app/not-found.tsx         Custom not-found page
+- app/opengraph-image.tsx   Generated Open Graph image
+- app/robots.ts             Generated robots.txt metadata
+- app/sitemap.ts            Generated sitemap metadata
+- app/api/contact/route.ts  Server-side contact form endpoint
+- app/projects/page.tsx     Projects listing page
+- app/projects/[slug]/page.tsx  Dynamic project case-study page
+
+Components:
+- components/layout/        Navbar, footer and scroll progress
+- components/sections/      Portfolio page sections
+- components/terminal/      Interactive terminal launcher and panel
+- components/ui/            Reusable buttons, cards, motion and display helpers
+
+Data:
+- data/profile.ts           Identity, links, profile text, resume and site URL
+- data/skills.ts            Skill groups and technology list
+- data/projects.ts          Project names, summaries and case-study fields
+- data/experience.ts        Internship and work experience
+- data/education.ts         Degree and education information
+- data/achievements.ts      Competitions and other achievements
+- data/learning.ts          Conferences and workshops
+- data/navigation.ts        Main navigation items
+
+Libraries:
+- lib/links.ts              Placeholder link detection and href handling
+- lib/code-preview.ts       Code preview data
+- lib/highlight.ts          Lightweight code highlighting
+- lib/motion.ts             Shared Framer Motion variants
+- lib/terminal-commands.ts  Terminal command logic
+- lib/terminal-events.ts    Terminal open/close event helpers
+- lib/use-active-section.ts Scroll-based active navigation logic
+- lib/utils.ts              Shared utility functions
+
+Public assets:
+- public/resume.pdf         Expected resume location; currently unavailable
+- public/projects/           Project screenshot directory
+
+4. HOME PAGE FLOW
+-----------------
+app/page.tsx renders the sections in this order:
+
+1. Hero
+2. About
+3. Skills
+4. Projects
+5. Experience
+6. Education
+7. Achievements
+8. Learning
+9. Contact
+
+The root layout wraps every route with:
+- Skip-to-content link
+- Grain/background treatment
+- Scroll progress indicator
+- Navbar
+- Main content
+- Footer
+- Interactive terminal launcher
+- Person JSON-LD structured data
+- Vercel Analytics
+
+5. ROUTES
+---------
+GET /                         Main one-page portfolio
+GET /projects                 Filterable project listing
+GET /projects/[slug]          Individual project case study
+POST /api/contact             Contact form API
+GET /robots.txt               Generated robots metadata
+GET /sitemap.xml              Generated sitemap metadata
+GET /opengraph-image          Generated social preview image
+
+Project slugs currently available:
+- gita-path-chatbot
+- realedge-ai
+- eventsphere
+- shopease
+- smartsbm
+- appointment-booking-system
+- weather-app
+- todo-app
+
+6. DATA FILES AND CURRENT CONTENT
+----------------------------------
+6.1 data/profile.ts
+
+Currently configured:
+- Name: Yadev Singh Nishad
+- GitHub: https://github.com/yadev07
+- LinkedIn: https://www.linkedin.com/in/yadev07
+- Email: yadevsingh.nishad@gmail.com
+- Role: BCA Computer Science Student
+- University: Dev Sanskriti Vishwavidyalaya
+- Campus: Shantikunj, Haridwar
+- Expected graduation: 2027
+- Focus areas: frontend, backend, databases, AI/NLP, data science and vision
+
+Resume status:
+- Expected file: public/resume.pdf
+- Current value: resume.available = false
+- After adding the PDF, set resume.available = true
+
+Site URL:
+- Read from NEXT_PUBLIC_SITE_URL
+- Falls back to http://localhost:3000 during development
+- Used by metadataBase, sitemap, robots and Open Graph URLs
+
+6.2 data/skills.ts
+
+Skill groups currently configured:
+- Frontend
+- Backend
+- Databases
+- Programming languages
+- AI, machine learning and NLP
+- Computer vision
+- Data visualisation
+- Tools and platforms
+
+The technology count is calculated automatically from the skill arrays.
+Do not add proficiency percentages unless they are genuinely verified.
+
+6.3 data/projects.ts
+
+Each project supports these fields:
+- slug
+- title
+- category
+- summary
+- overview
+- problem
+- solution
+- stack
+- topics
+- features
+- architecture
+- challenges
+- screenshots
+- github
+- demo
+- featured
+- detailsPending
+
+The project page displays a labelled placeholder when a case-study field is
+null or when an expected screenshot/link is not available. This prevents the
+site from showing invented information.
+
+Currently incomplete project data:
+- Detailed overview, problem, solution, features, architecture and challenges
+  are missing for most projects.
+- GitHub and demo URLs still use placeholder values.
+- Screenshots are not yet added.
+- Stack is missing for RealEdge AI, EventSphere, ShopEase and SmartSBM.
+- SmartSBM also needs a category and complete basic project information.
+
+Gita Path Chatbot currently has this stack recorded:
+- Python
+- Flask
+- MongoDB
+- NLP
+- TF-IDF
+- Sentence Transformers
+
+Appointment Booking System and To-Do App currently have the MERN stack
+recorded. Weather App currently has React recorded.
+
+6.4 data/experience.ts
+
+Current record:
+- Organisation: Aradhya Technologies
+- Type: Internship
+- Location: Varanasi
+- Role: Full Stack Web Development Intern
+
+Still required:
+- Internship dates or period
+- Summary
+- Responsibilities
+- Technologies used
+
+6.5 data/education.ts
+
+Current education is complete:
+- Bachelor of Computer Applications (BCA)
+- Computer Science
+- Dev Sanskriti Vishwavidyalaya
+- Shantikunj, Haridwar
+- In progress
+- Expected graduation: 2027
+
+Optional missing field:
+- Academic highlights or relevant coursework
+
+6.6 data/achievements.ts
+
+Current achievement:
+- Logicthon
+- Result: 3rd position
+- Type: Competition
+
+Still required for this entry:
+- Organiser
+- Date
+- Description
+
+Optional additional entries:
+- Certifications
+- Hackathons
+- Academic achievements
+- Scholarships or awards
+
+6.7 data/learning.ts
+
+Current entries:
+- Faith & Future: Integrating AI with Spirituality
+- Be10x AI Workshop
+
+Missing optional details:
+- Faith & Future date and verified context
+- Be10x location and date
+- Additional event or workshop details
+
+7. CONTACT FORM FLOW
+--------------------
+The Contact component is a client component.
+
+Flow:
+1. Visitor enters name, email and message.
+2. Client-side validation checks:
+   - Name is at least 2 characters.
+   - Email has a valid email format.
+   - Message is at least 10 characters.
+3. The browser sends a JSON POST request to /api/contact.
+4. The API parses and validates the request again on the server.
+5. The API applies a best-effort per-instance rate limit of 5 requests per
+   minute per forwarded client address.
+6. The API attempts Resend first when all Resend variables exist.
+7. If Resend is not configured, it attempts CONTACT_WEBHOOK_URL.
+8. If no provider is configured, it returns NOT_CONFIGURED with HTTP 503.
+9. The UI displays success, configuration, validation or delivery errors.
+
+Resend variables:
+- RESEND_API_KEY
+- CONTACT_TO_EMAIL
+- CONTACT_FROM_EMAIL
+
+Webhook variable:
+- CONTACT_WEBHOOK_URL
+
+Important Resend rule:
+- CONTACT_TO_EMAIL is the recipient address.
+- CONTACT_FROM_EMAIL is the authorized sender address.
+- A normal Gmail address should generally not be used as the sender.
+- Without a personal domain, use Resend's allowed testing sender if the account
+  permits it, such as onboarding@resend.dev.
+- The recipient may be restricted to the Resend account email on a new/testing
+  account.
+- For production, verify a domain in Resend and use an address on that domain.
+
+If the API logs "Contact delivery failed with status 403", the request reached
+Resend but Resend rejected it. Check:
+- API key is active and belongs to the correct Resend project/team.
+- Sender address is allowed or domain verified.
+- Recipient is allowed for the account's current sending status.
+- Variables are configured in the Production environment on Vercel.
+- A redeploy was completed after changing variables.
+
+The current route intentionally returns a generic delivery message to the
+browser and does not expose the provider response body or secrets.
+
+8. ENVIRONMENT VARIABLES
+------------------------
+Create .env.local for local development by copying .env.example.
+
+Required for correct deployed metadata:
+NEXT_PUBLIC_SITE_URL=https://your-deployed-domain.com
+
+Choose one contact delivery option.
+
+Option A - Resend:
+RESEND_API_KEY=re_...
+CONTACT_TO_EMAIL=your-recipient@example.com
+CONTACT_FROM_EMAIL=authorized-sender@example.com
+
+Option B - webhook:
+CONTACT_WEBHOOK_URL=https://your-webhook-provider-endpoint
+
+Never commit .env.local or any file containing real keys. The .gitignore file
+ignores environment-specific files while keeping .env.example trackable.
+
+9. LOCAL DEVELOPMENT
+--------------------
+Requirements:
+- Node.js 18.18 or newer
+- npm, or pnpm if using the pnpm lockfile
+
+Using npm:
+
+npm install
+npm run dev
+
+Open:
+http://localhost:3000
+
+Useful commands:
+- npm run typecheck     TypeScript validation
+- npm run lint          ESLint validation
+- npm run check         Typecheck followed by lint
+- npm run build         Production build
+- npm run start         Start the production build
+
+Recommended local verification:
+1. Run npm install.
+2. Run npm run check.
+3. Run npm run build.
+4. Run npm run dev and test all routes.
+5. Submit the contact form only after configuring a delivery provider.
+
+10. VERCEL DEPLOYMENT
+---------------------
+1. Push the repository to GitHub.
+2. Import the repository into Vercel.
+3. Allow Vercel to detect Next.js automatically.
+4. Add NEXT_PUBLIC_SITE_URL in the Production environment.
+5. Add either Resend variables or CONTACT_WEBHOOK_URL.
+6. Deploy the project.
+7. After changing environment variables, redeploy Production.
+8. For a clean dependency/build refresh, leave "Use existing Build Cache"
+   unchecked during redeploy.
+9. Test the live home page, projects pages, sitemap and contact form.
+
+For a no-domain setup, a webhook service such as Formspree can be used instead
+of Resend. Set CONTACT_WEBHOOK_URL and remove or clear all three Resend
+variables so the route does not select the Resend branch first.
+
+11. ACCESSIBILITY AND UX
+------------------------
+The project includes:
+- Semantic page landmarks
+- One main h1 per page
+- Skip-to-content link
+- Visible keyboard focus styles
+- Accessible labels for form controls
+- aria-invalid and aria-describedby for form errors
+- aria-live status messages for form and terminal output
+- Keyboard navigation for the terminal
+- Reduced-motion support
+- Placeholder states instead of blank or misleading content
+- Responsive layouts for desktop and mobile
+
+12. INTERACTIVE TERMINAL
+------------------------
+The terminal reads the same data modules used by the visible portfolio, so it
+does not maintain a separate copy of profile information.
+
+Open it using:
+- Navbar terminal button
+- Hero terminal link
+- Ctrl + ` on Windows/Linux
+- Cmd + ` on macOS
+
+Supported commands:
+- help
+- about
+- skills
+- projects
+- experience
+- education
+- achievements
+- learning
+- contact
+- resume
+- open <project-slug>
+- clear
+- exit
+
+Keyboard features:
+- Up arrow for command history
+- Tab for command completion
+- Escape to close
+
+13. SEO AND METADATA
+--------------------
+Metadata is generated from profile and project data.
+
+Included:
+- Page titles and descriptions
+- Canonical URLs
+- Open Graph metadata
+- Twitter summary card metadata
+- robots.txt
+- sitemap.xml
+- Person JSON-LD structured data
+- Generated Open Graph image
+
+NEXT_PUBLIC_SITE_URL should be set correctly before production deployment so
+canonical URLs, sitemap entries and social previews use the live domain.
+
+14. SECURITY NOTES
+------------------
+- Contact credentials are read only on the server.
+- No API key is exposed to client-side code.
+- Contact input is validated on both client and server.
+- Submitted message content is sent as plain text.
+- Resend response bodies are not logged.
+- The contact endpoint has a basic in-memory rate limit.
+- Environment files containing secrets are ignored by Git.
+- Never put RESEND_API_KEY in a NEXT_PUBLIC_ variable.
+
+15. CONTENT COMPLETION CHECKLIST
+---------------------------------
+Before calling the portfolio content complete:
+
+[ ] Add public/resume.pdf.
+[ ] Set resume.available = true in data/profile.ts.
+[ ] Confirm profile, email, GitHub and LinkedIn URLs.
+[ ] Add experience dates, summary, responsibilities and stack.
+[ ] Add detailed project overviews.
+[ ] Add the problem and solution for each project.
+[ ] Add verified features, architecture and challenges.
+[ ] Add real GitHub and demo URLs.
+[ ] Add project screenshots under public/projects/.
+[ ] Add missing project stacks and categories.
+[ ] Add Logicthon organiser, date and description.
+[ ] Add learning dates and verified event context.
+[ ] Add optional education highlights.
+[ ] Set NEXT_PUBLIC_SITE_URL in the deployment environment.
+[ ] Configure Resend or a webhook for contact delivery.
+[ ] Run npm run check.
+[ ] Run npm run build.
+[ ] Test the production deployment on desktop and mobile.
+
+16. IMPORTANT EDITING RULE
+--------------------------
+Use data files for portfolio content changes. Avoid changing components unless
+layout, behavior or presentation itself needs to change.
+
+Keep all personal facts, dates, links, technologies and achievements verified.
+When information is not available, leaving a field null or empty is preferable
+to inventing content.

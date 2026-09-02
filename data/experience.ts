@@ -1,12 +1,7 @@
 /**
  * Experience.
  *
- * Only the organisation, its location and the fact that it was an internship
- * were confirmed. Role, dates, responsibilities and technologies are `null` /
- * empty on purpose — the timeline shows a "to be updated" chip for each rather
- * than inventing a job title or a date.
- *
- * Fill any of them in and the chip is replaced by the real content.
+ * The entry below is based on the supplied internship certificate.
  */
 
 export interface ExperienceEntry {
@@ -26,14 +21,28 @@ export interface ExperienceEntry {
 export const experience: ExperienceEntry[] = [
   {
     id: "aradhya-technologies",
-    organisation: "Aradhya Technologies",
+    organisation: "Aradhya Technologies and Skill Development Pvt Ltd",
     kind: "Internship",
     location: "Varanasi",
     role: "Full Stack Web Development Intern",
-    period: null,
-    summary: null,
-    responsibilities: [],
-    stack: [],
+    period: "June 2, 2025 — June 30, 2025 (100 hours)",
+    summary:
+      "Completed an offline internship program in full stack web development using the MERN stack.",
+    responsibilities: [
+      "Gained hands-on practice building full-stack web applications with HTML, CSS, JavaScript, Tailwind CSS, React JS, Node JS, Express JS and MongoDB.",
+      "Assisted with frontend and backend web development tasks and gained practical exposure to full-stack application development.",
+      "Participated in application testing, debugging, troubleshooting and implementation of web application features.",
+    ],
+    stack: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Tailwind CSS",
+      "React JS",
+      "Node JS",
+      "Express JS",
+      "MongoDB",
+    ],
   },
 ];
 
