@@ -1,0 +1,10 @@
+# Project screenshots live here.
+#
+# Name each file after the project slug in data/projects.ts, e.g.
+#   gita-path-chatbot.png
+#   realedge-ai.png
+# then list it in that project's `screenshots` array with a short alt text:
+#   screenshots: [{ src: "/projects/gita-path-chatbot.png", alt: "Chat view answering a question" }]
+#
+# Until a file is listed, the page renders a labelled empty frame instead of a
+# placeholder image, so nothing looks broken and nothing is faked.

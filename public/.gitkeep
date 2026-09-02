@@ -1,0 +1,12 @@
+# Static assets
+#
+# resume.pdf — drop your PDF here with exactly this name, then set
+#   resume.available = true in data/profile.ts
+# The Resume buttons in the navbar and hero become real download links. While the
+# file is missing they stay visible but explain that it has not been added, so no
+# one ever hits a 404.
+#
+# projects/ — screenshots, named after each project slug. See projects/.gitkeep.
+#
+# The favicon and the social share image are generated from code, not stored
+# here: app/icon.svg and app/opengraph-image.tsx.

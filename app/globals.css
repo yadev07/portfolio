@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Belt and braces against unwanted horizontal scrolling. `clip` rather than
+     `hidden` so the sticky navbar keeps working. */
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-ink-900 font-sans text-paper antialiased;
+    font-feature-settings: "kern", "liga";
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: rgba(224, 164, 88, 0.26);
+    color: #fff7ec;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.saffron.DEFAULT");
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Respect the visitor's motion preference everywhere, including any CSS
+     animation a component might add later. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Components
+   --------------------------------------------------------------------------- */
+
+@layer components {
+  /* The single horizontal rhythm for the whole site. */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+  }
+
+  .panel {
+    @apply rounded-card border border-white/[0.07] bg-ink-800/60;
+  }
+
+  /* Fine film of noise over the page — stops large dark areas from banding. */
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Two very low-opacity washes that drift slowly behind the hero. Kept under
+     6% so it reads as depth rather than decoration. */
+  .ambient {
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 120vh;
+    pointer-events: none;
+    background-image:
+      radial-gradient(38rem 30rem at 78% 8%, rgba(224, 164, 88, 0.075), transparent 70%),
+      radial-gradient(42rem 34rem at 12% 26%, rgba(124, 156, 224, 0.075), transparent 70%);
+    will-change: transform;
+  }
+
+  /* Hairline diagonal hatch for empty screenshot frames. */
+  .frame-empty {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 9px
+    );
+  }
+
+  /* A soft top-to-bottom hairline used as the timeline spine. */
+  .spine {
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      theme("colors.ink.600") 12%,
+      theme("colors.ink.600") 88%,
+      transparent
+    );
+  }
+
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.ink.600") transparent;
+  }
+
+  .scroll-thin::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  .scroll-thin::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background-color: theme("colors.ink.600");
+  }
+
+  .scroll-thin::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  /* Syntax colours for the hero code window and the terminal. Four hues total:
+     saffron for keywords, sage for strings, a cool blue for numbers, neutrals
+     for everything else. */
+  .tok-plain {
+    color: #e8e4da;
+  }
+
+  .tok-keyword {
+    color: #e0a458;
+  }
+
+  .tok-string {
+    color: #a9c7b4;
+  }
+
+  .tok-number {
+    color: #8fb3d9;
+  }
+
+  .tok-key {
+    color: #c6c2b9;
+  }
+
+  .tok-punct {
+    color: #7d8698;
+  }
+
+  .tok-comment {
+    color: #7d8698;
+    font-style: italic;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+   --------------------------------------------------------------------------- */
+
+@layer utilities {
+  /* Fades the right edge of a horizontally scrollable strip so the cut looks
+     intentional on narrow screens. */
+  .mask-fade-r {
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+}
