@@ -36,28 +36,47 @@ const mono = JetBrains_Mono({
 });
 
 const title = `${profile.name} — ${profile.role}`;
-const description = `Portfolio of ${profile.name}, a BCA Computer Science student at ${profile.university}, ${profile.campus} (expected ${profile.graduationYear}). Full-stack web development, AI and NLP project work.`;
 
+const description = `Official portfolio of ${profile.name}, a BCA Computer Science student at ${profile.university}, ${profile.campus}. Explore his web development, AI, NLP and software projects.`;
+
+/**
+ * SEO metadata.
+ * These values affect search engines and link previews only.
+ * They do not change the website's visual layout.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   title: {
     default: title,
     template: `%s — ${profile.name}`,
   },
+
   description,
+
   applicationName: `${profile.name} — Portfolio`,
+
   authors: [{ name: profile.name }],
+
   creator: profile.name,
+
   keywords: [
     profile.name,
-    "BCA student portfolio",
-    "full-stack developer",
-    "Next.js developer",
-    "AI and NLP projects",
+    "Yadev",
+    "Yadev Singh",
+    "Yadev Singh Nishad portfolio",
+    "Yadev Singh Nishad developer",
+    "BCA student",
+    "Full Stack Developer",
+    "Web Developer",
+    "Next.js Developer",
     "Dev Sanskriti Vishwavidyalaya",
-    ...allTechnologies.slice(0, 12),
   ],
-  alternates: { canonical: "/" },
+
+  alternates: {
+    canonical: "/",
+  },
+
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -66,16 +85,22 @@ export const metadata: Metadata = {
     title,
     description,
   },
+
   twitter: {
     card: "summary_large_image",
     title,
     description,
   },
+
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
+
   category: "technology",
 };
 
@@ -87,12 +112,12 @@ export const viewport: Viewport = {
 };
 
 /**
- * Structured data. Deliberately conservative: no job title, no employer, no
- * awards that were not confirmed. `sameAs` only appears once a real profile
- * URL has been added to data/profile.ts.
+ * Structured data for the person represented by this portfolio.
  */
 function buildPersonSchema() {
-  const sameAs = [links.github, links.linkedin].filter((value) => !isPlaceholder(value));
+  const sameAs = [links.github, links.linkedin].filter(
+    (value) => !isPlaceholder(value)
+  );
 
   return {
     "@context": "https://schema.org",
@@ -101,6 +126,7 @@ function buildPersonSchema() {
     description,
     url: siteUrl,
     knowsAbout: allTechnologies,
+
     affiliation: {
       "@type": "CollegeOrUniversity",
       name: profile.university,
@@ -111,11 +137,16 @@ function buildPersonSchema() {
         addressCountry: "IN",
       },
     },
+
     ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <html
       lang="en"
@@ -144,9 +175,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <script
           type="application/ld+json"
-          // Static, generated from local data — no user input is interpolated.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildPersonSchema()) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildPersonSchema()),
+          }}
         />
+
         <Analytics />
       </body>
     </html>
