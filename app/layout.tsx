@@ -54,6 +54,10 @@ export const metadata: Metadata = {
 
   description,
 
+   verification: {
+    google: "jVmAtMHro_9C0xCSibOp_RjVdO0hLlKRFZ09uztynZ4",
+  },
+  
   applicationName: `${profile.name} — Portfolio`,
 
   authors: [{ name: profile.name }],
