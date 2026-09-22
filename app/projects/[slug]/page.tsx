@@ -7,7 +7,7 @@ import { MockupFrame } from "@/components/ui/MockupFrame";
 import { PendingChip, PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechBadge } from "@/components/ui/TechBadge";
-import { profile } from "@/data/profile";
+import { profile, siteUrl } from "@/data/profile";
 import { getAdjacentProjects, getProject, projects } from "@/data/projects";
 import type { Project } from "@/data/projects";
 import { isPlaceholder, resolveHref } from "@/lib/links";
@@ -26,17 +26,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProject(slug);
 
   if (!project) {
-    return { title: "Project not found", robots: { index: false, follow: false } };
+    return {
+      title: "Project not found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
   }
 
+  const canonicalUrl = `${siteUrl}/projects/${project.slug}`;
+
   return {
-    title: project.title,
+    title: `${project.title} — ${profile.name}`,
     description: `${project.summary} A project by ${profile.name}.`,
-    alternates: { canonical: `/projects/${project.slug}` },
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
+      type: "article",
       title: `${project.title} — ${profile.name}`,
       description: project.summary,
-      url: `/projects/${project.slug}`,
+      url: canonicalUrl,
+      siteName: `${profile.name} Portfolio`,
     },
   };
 }
@@ -95,7 +107,10 @@ function LinkRow({ project }: { project: Project }) {
           href={repo}
           target="_blank"
           rel="noreferrer noopener"
-          className={cn(base, "border-white/[0.12] text-paper hover:border-saffron/50")}
+          className={cn(
+            base,
+            "border-white/[0.12] text-paper hover:border-saffron/50",
+          )}
         >
           <Github aria-hidden="true" className="h-4 w-4" />
           Source code
@@ -103,9 +118,15 @@ function LinkRow({ project }: { project: Project }) {
       ) : (
         <span
           aria-disabled="true"
-          className={cn(base, "cursor-not-allowed border-dashed border-ink-600 text-haze")}
+          className={cn(
+            base,
+            "cursor-not-allowed border-dashed border-ink-600 text-haze",
+          )}
         >
-          <Github aria-hidden="true" className="h-4 w-4 text-haze-dim" />
+          <Github
+            aria-hidden="true"
+            className="h-4 w-4 text-haze-dim"
+          />
           Repository link to be added
         </span>
       )}
@@ -115,7 +136,10 @@ function LinkRow({ project }: { project: Project }) {
           href={demo}
           target="_blank"
           rel="noreferrer noopener"
-          className={cn(base, "border-saffron/50 bg-saffron/[0.08] text-saffron-soft hover:bg-saffron/[0.14]")}
+          className={cn(
+            base,
+            "border-saffron/50 bg-saffron/[0.08] text-saffron-soft hover:bg-saffron/[0.14]",
+          )}
         >
           <ExternalLink aria-hidden="true" className="h-4 w-4" />
           Live demo
@@ -123,9 +147,15 @@ function LinkRow({ project }: { project: Project }) {
       ) : (
         <span
           aria-disabled="true"
-          className={cn(base, "cursor-not-allowed border-dashed border-ink-600 text-haze")}
+          className={cn(
+            base,
+            "cursor-not-allowed border-dashed border-ink-600 text-haze",
+          )}
         >
-          <ExternalLink aria-hidden="true" className="h-4 w-4 text-haze-dim" />
+          <ExternalLink
+            aria-hidden="true"
+            className="h-4 w-4 text-haze-dim"
+          />
           Live demo to be added
         </span>
       )}
@@ -223,7 +253,10 @@ export default async function ProjectPage({ params }: PageProps) {
                 />
 
                 <section>
-                  <h2 className="font-display text-[1.5rem] text-paper">Key features</h2>
+                  <h2 className="font-display text-[1.5rem] text-paper">
+                    Key features
+                  </h2>
+
                   {project.features.length > 0 ? (
                     <ul className="mt-4 space-y-2.5">
                       {project.features.map((feature) => (
@@ -268,7 +301,10 @@ export default async function ProjectPage({ params }: PageProps) {
             )}
 
             <section>
-              <h2 className="font-display text-[1.5rem] text-paper">Screenshots</h2>
+              <h2 className="font-display text-[1.5rem] text-paper">
+                Screenshots
+              </h2>
+
               {extraShots.length > 0 ? (
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   {extraShots.map((shot) => (
@@ -316,10 +352,14 @@ export default async function ProjectPage({ params }: PageProps) {
                       </li>
                     ))}
                   </ul>
+
                   <p className="mt-4 text-[12.5px] leading-relaxed text-haze">
-                    The exact stack for this project hasn&apos;t been recorded yet — add it to{" "}
-                    <code className="font-mono text-[11.5px] text-saffron/85">stack</code> and it
-                    replaces this note.
+                    The exact stack for this project hasn&apos;t been recorded
+                    yet — add it to{" "}
+                    <code className="font-mono text-[11.5px] text-saffron/85">
+                      stack
+                    </code>{" "}
+                    and it replaces this note.
                   </p>
                 </>
               ) : (
@@ -334,9 +374,11 @@ export default async function ProjectPage({ params }: PageProps) {
 
             <div className="panel p-5 sm:p-6">
               <h2 className="text-[13px] font-medium text-paper">Links</h2>
+
               <ul className="mt-4 space-y-2 text-[13px]">
                 <li className="flex items-center justify-between gap-3">
                   <span className="text-haze">Repository</span>
+
                   {isPlaceholder(project.github) ? (
                     <PendingChip>to be added</PendingChip>
                   ) : (
@@ -350,8 +392,10 @@ export default async function ProjectPage({ params }: PageProps) {
                     </a>
                   )}
                 </li>
+
                 <li className="flex items-center justify-between gap-3">
                   <span className="text-haze">Live demo</span>
+
                   {isPlaceholder(project.demo) ? (
                     <PendingChip>to be added</PendingChip>
                   ) : (
@@ -383,6 +427,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
                 Previous
               </span>
+
               <p className="mt-2 font-display text-[1.15rem] text-paper transition-colors duration-500 group-hover:text-saffron-soft">
                 {previous.title}
               </p>
@@ -400,6 +445,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 Next
                 <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
               </span>
+
               <p className="mt-2 font-display text-[1.15rem] text-paper transition-colors duration-500 group-hover:text-saffron-soft">
                 {next.title}
               </p>
