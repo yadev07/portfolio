@@ -66,7 +66,12 @@ export const projects: Project[] = [
       "Next.js App Router pages compose reusable React components and read portfolio content from typed modules in data/. The contact form uses a server-side API route, while project pages are generated from project slugs.",
     challenges:
       "Designing a reusable content model that keeps visible sections, project pages, terminal responses and SEO metadata consistent.",
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/projects/personal-developer-portfolio.png",
+        alt: "Personal Developer Portfolio web application",
+      },
+    ],
     github: "PLACEHOLDER_GITHUB_URL",
     demo: "PLACEHOLDER_DEMO_URL",
     featured: true,
