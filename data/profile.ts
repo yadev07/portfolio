@@ -62,7 +62,7 @@ export const profile: Profile = {
     "AI & Technology Enthusiast",
   ],
   tagline:
-    "Building web applications, exploring AI, and turning ideas into practical software.",
+    "Building practical web applications with the MERN stack, exploring AI, and turning ideas into software.",
   degree: "Bachelor of Computer Applications (BCA) — Computer Science",
   university: "Dev Sanskriti Vishwavidyalaya",
   universityShort: "DSVV",

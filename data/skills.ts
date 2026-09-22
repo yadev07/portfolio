@@ -81,6 +81,7 @@ export const skillCategories: SkillCategory[] = [
       "VS Code",
       "Jupyter Notebook",
       "Google Colab",
+      "Power BI",
       "MySQL Workbench",
       "Postman",
       "WSL Ubuntu",

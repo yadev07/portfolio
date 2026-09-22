@@ -35,9 +35,17 @@ const mono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+/**
+ * Primary SEO identity.
+ *
+ * Keep the person's name and professional role together so search engines
+ * can clearly understand the relationship:
+ *
+ * Yadev Singh Nishad → Full-Stack MERN Developer
+ */
 const title = `${profile.name} — ${profile.role}`;
 
-const description = `Official portfolio of ${profile.name}, a BCA Computer Science student at ${profile.university}, ${profile.campus}. Explore his web development, AI, NLP and software projects.`;
+const description = `Official portfolio of ${profile.name}, a Full-Stack MERN Developer and BCA Computer Science student at ${profile.university}, ${profile.campus}. Explore his web development, AI, NLP and software projects.`;
 
 /**
  * SEO metadata.
@@ -54,27 +62,64 @@ export const metadata: Metadata = {
 
   description,
 
-   verification: {
+  verification: {
     google: "jVmAtMHro_9C0xCSibOp_RjVdO0hLlKRFZ09uztynZ4",
   },
-  
+
   applicationName: `${profile.name} — Portfolio`,
 
-  authors: [{ name: profile.name }],
+  authors: [
+    {
+      name: profile.name,
+      url: siteUrl,
+    },
+  ],
 
   creator: profile.name,
+  publisher: profile.name,
 
   keywords: [
+    // Identity
     profile.name,
+    profile.shortName,
+    "Yadev Singh Nishad",
     "Yadev",
     "Yadev Singh",
     "Yadev Singh Nishad portfolio",
     "Yadev Singh Nishad developer",
-    "BCA student",
-    "Full Stack Developer",
+
+    // Professional identity
+    profile.role,
+    "MERN Stack Developer",
+    "Full-Stack Developer",
     "Web Developer",
+    "React Developer",
     "Next.js Developer",
+    "Node.js Developer",
+
+    // Technologies
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "TypeScript",
+    "JavaScript",
+
+    // Education / entity association
+    "BCA Computer Science",
+    "BCA student",
+    "BCA student portfolio",
     "Dev Sanskriti Vishwavidyalaya",
+    "DSVV",
+    "Haridwar",
+
+    // Projects / interests
+    "AI projects",
+    "NLP projects",
+    "full-stack web development",
+
+    ...allTechnologies.slice(0, 12),
   ],
 
   alternates: {
@@ -99,15 +144,22 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 
   category: "technology",
 };
 
+/**
+ * Viewport configuration.
+ */
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -116,24 +168,55 @@ export const viewport: Viewport = {
 };
 
 /**
- * Structured data for the person represented by this portfolio.
+ * Structured data.
+ *
+ * This establishes the relationship between:
+ *
+ * Yadev Singh Nishad
+ *        ↓
+ * Full-Stack MERN Developer
+ *        ↓
+ * Portfolio
+ *        ↓
+ * GitHub + LinkedIn
  */
 function buildPersonSchema() {
-  const sameAs = [links.github, links.linkedin].filter(
-    (value) => !isPlaceholder(value)
-  );
+  const sameAs = [
+    links.github,
+    links.linkedin,
+  ].filter((value) => !isPlaceholder(value));
 
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+
     name: profile.name,
-    description,
+    alternateName: profile.shortName,
+
     url: siteUrl,
-    knowsAbout: allTechnologies,
+
+    jobTitle: profile.role,
+
+    description,
+
+    knowsAbout: [
+      "MERN Stack",
+      "Web Development",
+      "Full-Stack Development",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "TypeScript",
+      "JavaScript",
+      ...allTechnologies,
+    ],
 
     affiliation: {
       "@type": "CollegeOrUniversity",
       name: profile.university,
+
       address: {
         "@type": "PostalAddress",
         addressLocality: "Haridwar",
@@ -168,6 +251,7 @@ export default function RootLayout({
         <div aria-hidden="true" className="grain-overlay" />
 
         <ScrollProgress />
+
         <Navbar />
 
         <main id="main" className="relative z-10">
@@ -175,6 +259,7 @@ export default function RootLayout({
         </main>
 
         <Footer />
+
         <TerminalLauncher />
 
         <script
